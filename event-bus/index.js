@@ -18,8 +18,12 @@ app.use((req, res, next) => {
     next();
 })
 
+const events=[]
+
 app.post('/events',async (req, res) => {
+    
     const event = req.body
+    events.push(event)
     console.log(event)
     axios.post('http://localhost:4000/events', event).catch((err) => {
         console.log(`================4000/post====================`);
@@ -41,7 +45,12 @@ app.post('/events',async (req, res) => {
         console.log(err.message);
         console.log(`====================================`);
     });
+
     res.send({ status: 'OK' })
+})
+
+app.get('/events',(req,res)=>{
+    res.send(events)
 })
 
 app.listen(4005, (err) => {
