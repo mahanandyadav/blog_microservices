@@ -14,5 +14,10 @@ spec:
     spec:
       containers: 
         - name: posts
-          imagePullPolicy: Never
-          image:  docker.io/library/posts:latest
+          # imagePullPolicy: Always
+          image:  docker.io/library/posts:0.0.20
+
+
+# Always : It always pull the image in container irrespective of changes in the image
+# Never : It will never pull the new image on the container
+# IfNotPresent : It will pull the new image in cluster if the image is not present. default

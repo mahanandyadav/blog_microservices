@@ -47,5 +47,6 @@ app.post('/events',(req,res)=>{
 })
 
 app.listen(4000,()=>{
+    console.log(`v50`)
     console.log(`listening posts on  port 4000`)
 })
