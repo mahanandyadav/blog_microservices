@@ -25,7 +25,8 @@ app.post('/events',async (req, res) => {
     const event = req.body
     events.push(event)
     console.log(event)
-    axios.post('http://localhost:4000/events', event).catch((err) => {
+    // axios.post('http://localhost:4000/events', event).catch((err) => {
+    axios.post('http://post-cluster-ip-srv:4000/events', event).catch((err) => {
         console.log(`================4000/post====================`);
         console.log(err.message);
         console.log(`====================================`);

@@ -41,3 +41,12 @@ spec:
 # NAME            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
 # event-bus-srv   ClusterIP   10.108.115.184   <none>        4005/TCP   10s
 # kubernetes      ClusterIP   10.96.0.1        <none>        443/TCP    166m
+
+# $ kubectl get deployments
+# NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+# event-bus-depl   1/1     1            1           71m
+# posts-depl       1/1     1            1           50m
+
+# to rollout new image to pods
+# $ kubectl rollout restart deployment  event-bus-depl
+# deployment.apps/event-bus-depl restarted
