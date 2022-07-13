@@ -15,7 +15,8 @@ spec:
       containers: 
         - name: posts
           # imagePullPolicy: Always
-          image:  docker.io/library/posts:latest  #latest is default if not specified
+          # image:  docker.io/library/posts:latest  #latest is default if not specified
+          image:  docker.io/mnythedocker/posts
 
 
 # Always : It always pull the image in container irrespective of changes in the image
