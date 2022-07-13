@@ -19,3 +19,25 @@ spec:
           image: docker.io/mnythedocker/event-bus
           # image:  docker.io/library/event-bus:latest
           # image:  event-bus:latest
+
+# to get errors kubectl describe pod event-bus-depl-5b5ffdddc8-xdhrg
+# with "---" we can create new yml to create object
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-bus-srv
+spec:
+  selector:
+    app:  event-bus
+  # type: it is default behaveior so excluded
+  ports:
+    - name: event-bus
+      protocol: TCP
+      port: 4005
+      targetPort: 4005 
+
+# $ kubectl get services
+# NAME            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+# event-bus-srv   ClusterIP   10.108.115.184   <none>        4005/TCP   10s
+# kubernetes      ClusterIP   10.96.0.1        <none>        443/TCP    166m

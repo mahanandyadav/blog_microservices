@@ -22,3 +22,19 @@ spec:
 # Always : It always pull the image in container irrespective of changes in the image
 # Never : It will never pull the new image on the container
 # IfNotPresent : It will pull the new image in cluster if the image is not present. default
+---
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: post-cluster-ip-srv #name of cluster ip service to be created
+spec:
+  selector:
+    app:  posts
+  # type: it is default behaveior so excluded
+  ports:
+    - name: posts 
+      protocol: TCP
+      port: 4000
+      targetPort: 4000  #container/posts port
