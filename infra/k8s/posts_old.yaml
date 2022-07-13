@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: posts
+spec:
+  containers:
+    - name: posts
+      image:  docker.io/library/posts:0.0.1
+
+#this file will make 1 pod containing one container using k8s's :: kubectl apply -f file_name.yaml
