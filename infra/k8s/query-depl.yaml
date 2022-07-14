@@ -1,53 +1,53 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: event-bus-depl
+  name: query-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app:  event-bus
+      app:  query
   template:
     metadata:
       labels:
-        app:  event-bus
+        app:  query
     spec:
       containers: 
-        - name: event-bus
+        - name: query
           # imagePullPolicy: Always
-          # image:  mernstack.azurecr.io/event-bus
-          image: docker.io/mnythedocker/event-bus
-          # image:  docker.io/library/event-bus:latest
-          # image:  event-bus:latest
+          # image:  mernstack.azurecr.io/query
+          image: docker.io/mnythedocker/query
+          # image:  docker.io/library/query:latest
+          # image:  query:latest
 
-# to get errors kubectl describe pod event-bus-depl-5b5ffdddc8-xdhrg
+# to get errors kubectl describe pod query-depl-5b5ffdddc8-xdhrg
 # with "---" we can create new yml to create object
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: event-bus-srv
+  name: query-srv
 spec:
   selector:
-    app:  event-bus
+    app:  query
   # type: it is default behaveior so excluded
   ports:
-    - name: event-bus
+    - name: query
       protocol: TCP
-      port: 4005
-      targetPort: 4005 
+      port: 4002
+      targetPort: 4002
 
 # $ kubectl get services
 # NAME            TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
-# event-bus-srv   ClusterIP   10.108.115.184   <none>        4005/TCP   10s
+# query-srv   ClusterIP   10.108.115.184   <none>        4005/TCP   10s
 # kubernetes      ClusterIP   10.96.0.1        <none>        443/TCP    166m
 # posts-srv       NodePort    10.104.33.159    <none>        4000:31620/TCP   28s
 
 # $ kubectl get deployments
 # NAME             READY   UP-TO-DATE   AVAILABLE   AGE
-# event-bus-depl   1/1     1            1           71m
+# query-depl   1/1     1            1           71m
 # posts-depl       1/1     1            1           50m
 
 # to rollout new image to pods
-# $ kubectl rollout restart deployment  event-bus-depl
-# deployment.apps/event-bus-depl restarted
+# $ kubectl rollout restart deployment  query-depl
+# deployment.apps/query-depl restarted
