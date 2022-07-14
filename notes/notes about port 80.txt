@@ -1,0 +1,44 @@
+Important Note About Port 80
+In the upcoming lecture, we will be editing our hosts file so that we can access posts.com/posts in our browser. If you are unable to access the application you may have something already running on port 80, which is the default port for the ingress. Before doing anything, please make sure you have properly installed the ingress-nginx controller for your particular Kubernetes client. Many students are skipping this step!
+
+https://www.udemy.com/course/microservices-with-node-js-and-react/learn/lecture/26492690#questions
+
+Once you have confirmed that you have indeed installed/enabled the ingress-nginx controller, you'll need to identify if something is running on port 80 and shut it down. Some students have even had applications from other courses or personal projects still running. For Windows Pro users, both SQL Server Reporting Services (MSSQLSERVER) and the World Wide Web Publishing Service / IIS Server have been the most common services causing a conflict.
+
+To determine what might be using this port, in your terminal run:
+
+Windows
+Using Powershell with elevated permissions:
+
+netstat -anb
+
+Scroll to the top of the returned output and find the listing for port 80. If Docker is properly listening on port 80 you should see:
+
+TCP   0.0.0.0:80   0.0.0.0:0   LISTENING
+
+[com.docker.backend.exe]
+
+If something else is listed for TCP 0.0.0.0:80, you'll need to shut that service down.
+
+macOS
+sudo lsof -i tcp:80
+
+If Docker is properly listening on port 80 you should see something very similar:
+
+COMMAND    PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+
+com.docke 8263 user  113u  IPv6 0xa20e89998489120d      0t0  TCP *:http (LISTEN)
+
+If something else is listed for TCP *:http, you'll need to shut that service down.
+
+
+
+Note - Minikube users on Windows and macOS should also make sure that they aren't using the docker driver which is not compatible with an ingress as noted here:
+
+https://www.udemy.com/course/microservices-with-node-js-and-react/learn/lecture/23145358#questions
+
+Course content
+Play
+1. How to Get Help
+1min
+Start

@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v1  #nodePort config file
 kind: Service
 metadata:
   name: posts-srv
